@@ -1,15 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:weatherinterface/model.dart';
-import 'package:weatherinterface/repo.dart';
+import 'mywrapper.dart';
 
-class Home extends StatelessWidget {
+class View extends StatefulWidget {
+  @override
+  State<View> createState() => _ViewState();
+}
+
+class _ViewState extends State<View> {
+  late MyWrapper mywrapper;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    mywrapper = MyWrapper();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Container(
-          width: double.infinity,
-          height: double.infinity,
+        width: double.infinity,
+        height: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/background.png"),
@@ -18,7 +30,7 @@ class Home extends StatelessWidget {
         ),
         child: Center(
           child: FutureBuilder<WeatherModel>(
-            future: getData(),
+            future: mywrapper.doSomething(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return Column(

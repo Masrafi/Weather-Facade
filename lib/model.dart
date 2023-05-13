@@ -8,11 +8,11 @@ class WeatherModel {
 
   WeatherModel(
       {this.temp,
-        this.feelsLike,
-        this.tempMin,
-        this.tempMax,
-        this.pressure,
-        this.humidity});
+      this.feelsLike,
+      this.tempMin,
+      this.tempMax,
+      this.pressure,
+      this.humidity});
 
   WeatherModel.fromJson(Map<String, dynamic> json) {
     temp = json['temp'];
