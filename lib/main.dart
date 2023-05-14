@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:weatherinterface/mypresenter.dart';
+import 'mywrapper.dart';
 import 'view.dart';
 
 void main() {
-  runApp(const MyApp());
+  final MyWrapper wrapper = MyWrapper();
+  final MyPresenter presenter = MyPresenter(wrapper);
+  runApp(MyApp(presenter));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
+  final MyPresenter _presenter;
+  MyApp(this._presenter);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: View(),
+      home: View(_presenter),
     );
   }
 }

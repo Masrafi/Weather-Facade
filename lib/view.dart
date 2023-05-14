@@ -1,21 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:weatherinterface/model.dart';
-import 'mywrapper.dart';
+import 'package:weatherinterface/mypresenter.dart';
 
-class View extends StatefulWidget {
-  @override
-  State<View> createState() => _ViewState();
-}
-
-class _ViewState extends State<View> {
-  late MyWrapper mywrapper;
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    mywrapper = MyWrapper();
-  }
-
+class View extends StatelessWidget {
+  final MyPresenter myPresenter;
+  View(this.myPresenter);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,8 +19,9 @@ class _ViewState extends State<View> {
         ),
         child: Center(
           child: FutureBuilder<WeatherModel>(
-            future: mywrapper.doSomething(),
+            future: myPresenter.incrementCounter(),
             builder: (context, snapshot) {
+              print(snapshot.data);
               if (snapshot.hasData) {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
